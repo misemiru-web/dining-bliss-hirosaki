@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "dining Bliss｜弘前駅近くのイタリアン",
+  title: "dining Bliss | 弘前のタパスバー・レストラン",
   description:
-    "弘前駅近くで、こだわりの料理を気軽に楽しめるイタリアン dining Blissの営業提案用サンプルLPです。",
+    "dining Blissの営業提案用サンプルサイト。料理、店内の雰囲気、営業時間、ご予約案内を1ページで紹介します。",
   robots: {
     index: false,
     follow: false,
