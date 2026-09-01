@@ -1,4 +1,4 @@
-# dining Bliss｜営業提案用サンプルLP 要件定義書 v1.3.1
+# dining Bliss｜営業提案用サンプルLP 要件定義書 v1.3.2
 
 - 作成日：2026-09-01
 - 対象：dining Bliss
@@ -6,7 +6,7 @@
 - 正本形式：Markdown
 - 上位基準：ミセミルWeb 事業設計書 v1.4
 - 補助基準：ミセミルWeb｜LP要件定義GPT 補足ナレッジ v1.3
-- 改訂理由：v1.2をPM・エンジニア・Webデザイナーの3観点で再評価し、CTAの確度、情報密度、店舗固有性、写真レイアウト、実装単純性を改善
+- 改訂理由：v1.3.1を基準に、実装レビューで確定したHeaderの固定・ナビゲーション動作、Heroの全面写真構成、Mobile Hero、メインコピーを更新
 
 > 最重要原則：店舗の魅力を勝手に盛らず、確認できる魅力を整理する。未確認情報は未確認のまま扱い、正式制作時に店舗確認する。
 
@@ -287,7 +287,7 @@ LPでは**「料理写真の強さ」「昼夜双方の料理」「ダークな�
 
 仮コピー：
 
-### **昼も、夜も。Blissのひと皿を。**
+### **昼も夜も、Blissのひと皿を。**
 
 サブコピー：
 
@@ -368,15 +368,24 @@ LPでは**「料理写真の強さ」「昼夜双方の料理」「ダークな�
 
 ### Desktop
 - 最大コンテンツ幅：おおむね 1180〜1240px
-- Hero：**左テキスト 40〜45% / 右料理写真 55〜60%** のsplit構成を第一案
+- Hero：**料理写真を画面全面に大きく使用し、左側へダークグラデーションを重ねてコピー・CTAを配置するfull-bleed構成**
+- Heroはsplit layoutを使用しない
 - Food：1枚大 + 2枚小のeditorial grid
 - Atmosphere：横長店内写真 + 補助写真
 
 ### Mobile
 - 左右余白：20〜24px
-- Hero：料理写真を上または背景全面、コピーとCTAを1画面内に収める
+- Hero：上部に料理写真を大きく表示し、下方向へCharcoal背景へ自然につなぐ
+- Hero画像領域はおおむね52〜58svhを目安に調整
+- コピーとCTAは画像下のダーク背景上に配置
 - 料理は小型カード化せず縦に大きく見せる
 - 情報欄は完全縦積み
+
+### Heroデザイン参照
+- Desktop：`docs/design-reference/hero-desktop-v2.png`
+- Mobile：`docs/design-reference/hero-mobile-v2.png`
+- 上記画像は**Heroの構図・余白・写真の見せ方・テキスト配置の視覚参考**とする
+- 文章・店舗情報・CTA文言は本要件定義書を正とする
 
 ---
 
@@ -413,7 +422,7 @@ LPでは**「料理写真の強さ」「昼夜双方の料理」「ダークな�
 ## 10-1. Header
 
 ### 目的
-店名と主要導線を最小スペースで提示する。
+店名と主要導線を最小スペースで提示し、ページ内のどこからでも主要セクションへ移動できるようにする。
 
 ### 掲載
 - `dining Bliss`
@@ -422,18 +431,38 @@ LPでは**「料理写真の強さ」「昼夜双方の料理」「ダークな�
 - Information
 - Reservation
 
+### 共通仕様
+- `position: fixed`
+- `top: 0`
+- `width: 100%`
+- Hero上では透明を基本とする
+- スクロール後はCharcoal系の半透明背景 + 軽い`backdrop-blur`へ変化
+- Hero・本文より十分高い`z-index`
+- 各アンカー移動先に固定Header分の`scroll-margin-top`を設定
+- Heroやセクション見出しをHeaderで隠さない
+
 ### Desktop
-- Hero上部に透過〜ダーク半透明
 - 横並び
-- 予約CTAは小型
+- `Food` → Food / Featured Dishes
+- `Space` → Atmosphere
+- `Information` → Shop Information / Access
+- `Reservation` → 最終Reservation CTA
+- Reservationのみ小型CTAとして扱う
+- ナビゲーションはページ内アンカーへsmooth scroll
 
 ### Mobile
-- 店名 + Menu button
-- Menu展開時のみ主要アンカー表示
+- 店名 + hamburger Menu button
+- Menu buttonは実際に開閉する
+- 展開メニューに Food / Space / Information / Reservation を表示
+- 項目選択後はメニューを閉じる
+- `aria-expanded`等の基本アクセシビリティ対応
+- メニュー展開中は必要に応じて本文側の不要なスクロールを防ぐ
 - 固定Header高さは抑える
 
 ### 実装注意
-scrollイベント依存の複雑な演出は不要。CSS中心で成立させる。
+- Headerの背景変化のためだけに重いライブラリを追加しない
+- CSS + 最小限のClient JavaScriptで成立させる
+- 375 / 390 / 768 / 1024 / 1440pxで重なり・アンカー位置を確認する
 
 ---
 
@@ -444,6 +473,7 @@ scrollイベント依存の複雑な演出は不要。CSS中心で成立させ�
 
 ### メインビジュアル
 第一候補：
+- `public/images/hero-demi-omelette.jpg`
 - デミグラス系オムライスの**Instagram UI・文字なし原画像**
 
 代替候補：
@@ -451,8 +481,13 @@ scrollイベント依存の複雑な演出は不要。CSS中心で成立させ�
 - 肉料理
 
 ### H1
-**昼も、夜も。  
+**昼も夜も、  
 Blissのひと皿を。**
+
+### コピー変更理由
+- 「昼も、夜も。」より読点・句点による分断感を抑え、1つのメッセージとして自然に読ませる
+- Mobileで「昼も夜も、」「Blissのひと皿を。」の2行構成を作りやすい
+- 店舗の新しい事実を追加する変更ではなく、確認済みの昼夜営業をもとにしたコピー表現の調整
 
 ### サブコピー
 **ランチからディナーまで楽しめる、dining Bliss。**
@@ -465,24 +500,39 @@ Blissのひと皿を。**
 副：**Instagramを見る**
 
 ### Desktop
-- split layout
-- 左側をダーク背景、右側に料理を大きく表示
-- Hero高さは約700〜820pxを目安とし、画面高に応じ調整
-- テキスト上部に十分な余白
-- 料理写真にコピーを重ねすぎない
+- split layoutを廃止
+- `hero-demi-omelette.jpg`をHero全面に大きく表示
+- Hero高さは`100svh`前後を基本とし、画面高に応じて調整
+- 左側へ強めのダークグラデーションを重ねる
+- ラベル / H1 / サブコピー / CTAを左側に配置
+- 右側の料理は可能な限り暗くしすぎず、鮮明に見せる
+- 画像そのものを過度に暗く加工せず、CSS overlay / gradientで可読性を作る
+- Desktop用に`object-position`または背景位置を個別調整し、主被写体を切らない
+- `docs/design-reference/hero-desktop-v2.png`を視覚基準とする
 
 ### Mobile
-- 写真を上 48〜55%、テキストを下
-- 主被写体を中央〜やや下に保持
-- H1は2〜3行以内
-- CTAは横幅100%近く
-- 1画面目でH1とCTAの存在が分かる
+- 上部に料理写真を大きく表示
+- 画像領域はおおむね52〜58svhを目安
+- 画像下部からCharcoal背景へ自然につなぐ
+- ラベル / H1 / サブコピー / CTAは画像下のダーク背景上に配置
+- H1は原則「昼も夜も、」「Blissのひと皿を。」の2行を基本
+- Primary / Secondary CTAは同じ高さを基本とし、過度に巨大にしない
+- CTAは十分なタップ領域を確保しつつ、画面を占有しすぎない
+- 375px / 390pxで不自然な改行が出ない
+- Mobile専用の`object-position`または背景位置を設定可能とする
+- `docs/design-reference/hero-mobile-v2.png`を視覚基準とする
+
+### Headerとの関係
+- HeaderはHero上で透明
+- Heroの主要料理・コピーがHeaderによって隠れない
+- スクロール後にHeader背景が現れてもHeroとの視覚的連続性を損なわない
 
 ### 禁止
 - 全画面動画
 - 読めない文字重ね
 - Hero表示待ちアニメーション
 - 料理写真の過剰加工
+- 画像全面を一律に暗くして料理の魅力を損なうこと
 
 ---
 
@@ -825,6 +875,7 @@ public/
 
 JavaScriptが必要な候補：
 - Mobile menu
+- Headerのスクロール状態による背景切替
 - 軽微なGallery操作を採用する場合のみ
 
 scroll revealのためだけに重いライブラリを入れない。
@@ -865,6 +916,11 @@ scroll revealのためだけに重いライブラリを入れない。
 - CTA折返し
 - 画像縦横比
 - Header重なり
+- Headerのfixed動作
+- Headerのスクロール後背景切替
+- Desktopナビゲーションの各アンカー
+- Mobile hamburgerの開閉・選択後クローズ
+- アンカー移動後に見出しがHeaderへ隠れない
 - Footerまでの固定要素被り
 
 ## 13-7. 実装優先度
@@ -1019,10 +1075,12 @@ Modern Casual Diningを軸に、気取りすぎず、料理写真が最も美し
 
 ## Hero
 
-Desktopでは左40〜45%をダーク背景のテキスト、右55〜60%を大きな料理写真にするsplit layoutを第一案とする。
+Desktopではsplit layoutを使わず、使用許可済みのデミグラス系オムライス写真をHero全面に大きく表示する。
+左側には黒〜Charcoalのダークグラデーションを重ね、右側の料理は鮮明に残す。
+左側にラベル、H1、Sub、CTAを配置する。
 
 H1：
-「昼も、夜も。Blissのひと皿を。」
+「昼も夜も、Blissのひと皿を。」
 
 Sub：
 「ランチからディナーまで楽しめる、dining Bliss。」
@@ -1036,7 +1094,11 @@ Primary CTA：
 Secondary CTA：
 「Instagramを見る」
 
-Hero画像は使用許可済みのデミグラス系オムライスの写真を想定し、料理の質感、ソースの艶、赤い皿がよく見える構図にする。Instagram UIや投稿文字は表示しない。
+Hero画像は料理の質感、ソースの艶、赤い皿がよく見える構図にする。Instagram UIや投稿文字は表示しない。
+
+Mobileでは上部に料理写真を大きく表示し、画像下部からCharcoal背景へ自然につなぐ。
+その下にラベル、H1、Sub、Primary CTA、Secondary CTAを配置する。
+H1は「昼も夜も、」「Blissのひと皿を。」の2行を基本とする。
 
 ## ページ構成
 
@@ -1100,7 +1162,7 @@ Story、FAQ、口コミ、News、ティッカーは追加しない。
 ## Mobile
 
 390pxを中心に設計。  
-Heroの料理写真とH1、CTAが最初の画面で認識できる。  
+Heroでは料理写真を上部に大きく見せ、スクロール開始時点からH1とCTAの存在も認識できる。  
 料理写真を小さなカードにしない。  
 Informationは縦積み。  
 CTAは44px以上のタップ領域。  
@@ -1147,17 +1209,25 @@ Next.js / Reactで再現可能な通常のWeb UIにする。
 
 ## デザイン
 - [ ] Heroで飲食店・料理・CTAがすぐ理解できる
+- [ ] Desktop Heroが全面料理写真 + 左ダークグラデーション構成になっている
+- [ ] Mobile Heroが料理写真 → ダーク背景のコピー/CTAへ自然につながっている
+- [ ] H1が「昼も夜も、Blissのひと皿を。」になっている
 - [ ] 料理写真が最も目立つ
 - [ ] 作り物的な昭和レトロ表現がない
 - [ ] ダーク空間と暖色料理写真の対比が自然
 - [ ] 赤を使いすぎていない
 - [ ] 正式ロゴがないのに偽ロゴを作っていない
 - [ ] Mobile Firstで成立
+- [ ] HeaderがHero上で透明、スクロール後に読みやすい背景へ切り替わる
 
 ## エンジニアリング
 - [ ] Next.js static exportで成立
 - [ ] Project PagesのbasePath / asset pathが正しい
 - [ ] 不要なClient JSがない
+- [ ] Headerがfixedで正常動作
+- [ ] Desktopナビゲーションのアンカーが正常
+- [ ] Mobile hamburgerが開閉し、選択後に閉じる
+- [ ] アンカー移動後に見出しがHeaderへ隠れない
 - [ ] `noindex, nofollow`
 - [ ] alt
 - [ ] keyboard focus
@@ -1200,3 +1270,19 @@ Next.js / Reactで再現可能な通常のWeb UIにする。
 5. 補助色としてMuted Text・Warm Gold・Light Borderを追加
 6. GPT Image用プロンプトのColor指定も同じ値へ同期
 7. **文章、セクション構成、Heroコピー、CTA、レイアウト、画像方針、技術要件は変更なし**
+
+## v1.3.1 → v1.3.2 Header / Hero更新
+
+1. Headerを`fixed`へ変更し、Hero上は透明、スクロール後は半透明Charcoal + blurとする仕様を追加
+2. DesktopナビゲーションをFood / Space / Information / Reservationのページ内アンカーとして明確化
+3. Mobile hamburgerの開閉・選択後クローズ・アクセシビリティ要件を追加
+4. HeroのDesktop split layoutを廃止
+5. Desktop Heroを**全面料理写真 + 左ダークグラデーション + 左コピー/CTA**へ変更
+6. Mobile Heroを**大きな料理写真 → Charcoal背景のコピー/CTA**へ変更
+7. Hero画像領域をMobileで52〜58svh目安へ更新
+8. H1を「昼も、夜も。Blissのひと皿を。」から**「昼も夜も、Blissのひと皿を。」**へ変更
+9. Desktop / Mobileで画像位置を個別調整可能とする
+10. `hero-desktop-v2.png` / `hero-mobile-v2.png`をHeroの視覚参考として追加
+11. GPT Image用Heroプロンプトを同仕様へ同期
+12. 店舗情報、CTA方針、セクション構成、画像権利、その他の技術要件はv1.3.1を維持
+
