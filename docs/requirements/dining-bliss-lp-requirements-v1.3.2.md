@@ -779,14 +779,13 @@ Instagram
 ```text
 /public/images/
   hero-demi-omelette.jpg
-  food-cutlet.jpg
-  food-pasta.jpg
-  food-meat.jpg
-  food-tapas.jpg
-  dessert-parfait.jpg
+  02-herb-baked-seafood-and-tomato-plate.jpg
+  03-steak-on-wooden-table.jpg
+  04-crispy-cutlet-with-tomato-and-herbs.jpg
+  05-medium-rare-steak-with-red-wine.jpg
+  06-creamy-seafood-pasta.jpg
   interior-counter.jpg
   interior-table.jpg
-  exterior-day.jpg
   exterior-night.jpg
 ```
 
@@ -1285,4 +1284,3 @@ Next.js / Reactで再現可能な通常のWeb UIにする。
 10. `hero-desktop-v2.png` / `hero-mobile-v2.png`をHeroの視覚参考として追加
 11. GPT Image用Heroプロンプトを同仕様へ同期
 12. 店舗情報、CTA方針、セクション構成、画像権利、その他の技術要件はv1.3.1を維持
-

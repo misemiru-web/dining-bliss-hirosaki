@@ -58,10 +58,11 @@
 ```text
 public/images/
   hero-demi-omelette.jpg
-  food-cutlet.jpg
-  food-pasta.jpg
-  food-meat.jpg
-  food-tapas.jpg
+  02-herb-baked-seafood-and-tomato-plate.jpg
+  03-steak-on-wooden-table.jpg
+  04-crispy-cutlet-with-tomato-and-herbs.jpg
+  05-medium-rare-steak-with-red-wine.jpg
+  06-creamy-seafood-pasta.jpg
   interior-counter.jpg
   interior-table.jpg
   exterior-night.jpg

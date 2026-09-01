@@ -1,8 +1,9 @@
 import exteriorNight from "@/public/images/exterior-night.jpg";
-import foodCutlet from "@/public/images/food-cutlet.jpg";
-import foodMeat from "@/public/images/food-meat.jpg";
-import foodPasta from "@/public/images/food-pasta.jpg";
-import foodTapas from "@/public/images/food-tapas.jpg";
+import kitchenHerbBakedSeafood from "@/public/images/02-herb-baked-seafood-and-tomato-plate.jpg";
+import kitchenSteak from "@/public/images/03-steak-on-wooden-table.jpg";
+import kitchenCrispyCutlet from "@/public/images/04-crispy-cutlet-with-tomato-and-herbs.jpg";
+import dinnerMediumRareSteak from "@/public/images/05-medium-rare-steak-with-red-wine.jpg";
+import lunchCreamySeafoodPasta from "@/public/images/06-creamy-seafood-pasta.jpg";
 import heroDemiOmelette from "@/public/images/hero-demi-omelette.jpg";
 import interiorCounter from "@/public/images/interior-counter.jpg";
 import interiorTable from "@/public/images/interior-table.jpg";
@@ -25,9 +26,9 @@ export const site = {
   },
   images: {
     hero: heroDemiOmelette,
-    food: [foodCutlet, foodTapas, foodPasta],
-    lunch: foodPasta,
-    dinner: foodMeat,
+    food: [kitchenHerbBakedSeafood, kitchenSteak, kitchenCrispyCutlet],
+    lunch: lunchCreamySeafoodPasta,
+    dinner: dinnerMediumRareSteak,
     counter: interiorCounter,
     table: interiorTable,
     exterior: exteriorNight,
