@@ -12,12 +12,12 @@ export function FoodGallery() {
     <section className="section food" id="food" aria-labelledby="food-title">
       <div className="container">
         <div className="section-heading food-heading">
-          <div><p className="eyebrow">FROM THE KITCHEN</p><h2 id="food-title">Blissの料理</h2></div>
-          <p>ランチからディナーまで。料理の彩りや質感を、実際の店舗写真でご覧いただけます。</p>
+          <div data-reveal><p className="eyebrow">FROM THE KITCHEN</p><h2 id="food-title">Blissの料理</h2></div>
+          <p data-reveal data-reveal-delay="1">ランチからディナーまで。料理の彩りや質感を、実際の店舗写真でご覧いただけます。</p>
         </div>
         <div className="food-grid">
           {site.images.food.map((image, index) => (
-            <figure className={`food-photo food-photo-${index + 1}`} key={image.src}>
+            <figure className={`food-photo food-photo-${index + 1}`} key={image.src} data-reveal>
               <Image
                 src={image}
                 alt={foodAlt[index]}
@@ -27,6 +27,9 @@ export function FoodGallery() {
             </figure>
           ))}
         </div>
+        <a className="food-instagram-link" href={site.links.instagram} target="_blank" rel="noreferrer" data-reveal>
+          Instagramで料理を見る →
+        </a>
       </div>
     </section>
   );

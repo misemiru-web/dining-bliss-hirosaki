@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Wordmark } from "@/components/Wordmark";
 
 const navigation = [
   { label: "About", href: "#about" },
@@ -55,7 +56,7 @@ export function Header() {
         aria-label={`${siteName} ページ上部へ`}
         onClick={closeMenu}
       >
-        {siteName}
+        <Wordmark />
       </a>
       <nav className="desktop-nav" aria-label="メインナビゲーション">
         {navigation.map((item) => (

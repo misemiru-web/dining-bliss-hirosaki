@@ -16,7 +16,10 @@ export function Hero() {
       </div>
       <div className="hero-content">
         <p className="eyebrow">TAPAS BAR / RESTAURANT / HIROSAKI</p>
-        <h1 id="hero-title"><span>昼も夜も、</span><span>Blissのひと皿を。</span></h1>
+        <h1 id="hero-title">
+          <span>昼も夜も、</span>
+          <span><span className="hero-title-accent">Bliss</span>のひと皿を。</span>
+        </h1>
         <p className="hero-lead">ランチからディナーまで楽しめる、dining Bliss。</p>
         <div className="hero-actions">
           <a className="button button-primary" href={site.links.reservation} target="_blank" rel="noreferrer">
