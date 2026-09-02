@@ -668,7 +668,7 @@ h2 {
 }
 
 .information {
-  padding-top: 72px;
+  padding-block: 56px 64px;
 }
 
 .information-layout {
@@ -677,7 +677,7 @@ h2 {
     "heading"
     "photo"
     "content";
-  gap: 30px;
+  gap: 22px;
 }
 
 .information-heading {
@@ -686,7 +686,8 @@ h2 {
 
 .information-photo {
   grid-area: photo;
-  aspect-ratio: 4 / 3;
+  max-height: 360px;
+  aspect-ratio: 16 / 11;
   border-radius: 12px;
 }
 
@@ -703,9 +704,11 @@ h2 {
 }
 
 .information-list > div {
-  padding-block: 13px 15px;
+  padding-block: 10px;
   display: grid;
-  gap: 3px;
+  grid-template-columns: 86px minmax(0, 1fr);
+  align-items: start;
+  gap: 14px;
   border-bottom: 1px solid var(--light-border);
 }
 
@@ -718,23 +721,25 @@ h2 {
 }
 
 .information-list dd {
+  min-width: 0;
   font-size: 0.94rem;
   line-height: 1.65;
-  word-break: keep-all;
-  overflow-wrap: break-word;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
 }
 
 .information-note {
-  margin-top: 20px;
+  margin-top: 14px;
   color: var(--muted-text);
-  font-size: 0.76rem;
+  font-size: 0.8125rem;
   line-height: 1.7;
 }
 
 .information-actions {
-  margin-top: 30px;
+  margin-top: 20px;
   display: grid;
-  gap: 12px;
+  gap: 10px;
 }
 
 .sub-actions {
@@ -822,12 +827,25 @@ h2 {
 }
 
 .site-footer {
+  position: relative;
+  z-index: 1;
   padding: 24px 22px 22px;
   display: grid;
   gap: 14px;
+  overflow: visible;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
   color: var(--light-text);
   background: var(--charcoal);
   border-top: 1px solid rgba(245, 240, 232, 0.14);
+}
+
+.site-footer > *,
+.site-footer [data-reveal] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
 }
 
 .site-footer p,
@@ -1102,26 +1120,26 @@ button:focus-visible {
     grid-template-columns: minmax(0, 0.9fr) minmax(430px, 1.1fr);
     grid-template-rows: auto 1fr;
     column-gap: clamp(60px, 8vw, 116px);
-    row-gap: 30px;
+    row-gap: 24px;
   }
 
   .information {
-    padding-top: 126px;
+    padding-block: 104px;
   }
 
   .information-photo {
-    height: clamp(520px, 42vw, 600px);
-    max-height: 600px;
+    height: clamp(460px, 38vw, 520px);
+    max-height: 520px;
     align-self: start;
     aspect-ratio: auto;
     border-radius: 10px;
   }
 
   .information-list > div {
-    padding-block: 14px;
-    grid-template-columns: 7.25rem minmax(0, 1fr);
+    padding-block: 11px;
+    grid-template-columns: 90px minmax(0, 1fr);
     align-items: baseline;
-    gap: 24px;
+    gap: 18px;
   }
 
   .information-list dt {
@@ -1135,7 +1153,7 @@ button:focus-visible {
   .information-actions {
     grid-template-columns: minmax(230px, 0.85fr) 1.15fr;
     align-items: center;
-    gap: 22px;
+    gap: 16px;
   }
 
   .sub-actions {
