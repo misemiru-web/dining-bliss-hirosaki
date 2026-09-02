@@ -826,6 +826,18 @@ h2 {
   margin: 0;
 }
 
+@media (max-width: 899px) {
+  .reservation-inner {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .reservation h2 + p {
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+}
+
 .site-footer {
   position: relative;
   z-index: 1;

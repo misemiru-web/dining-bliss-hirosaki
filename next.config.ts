@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
   output: "export",
   basePath,
   assetPrefix: basePath || undefined,
+  allowedDevOrigins: ["127.0.0.1", "192.168.1.169"],
   trailingSlash: true,
   images: {
     unoptimized: true,
